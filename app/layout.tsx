@@ -14,7 +14,6 @@ import {
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 
-
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "800"],
@@ -22,30 +21,49 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-
 const siteConfig = {
   title: process.env.NEXT_PUBLIC_TITLE,
   description: process.env.NEXT_PUBLIC_DESCRIPTION,
   generator: process.env.NEXT_PUBLIC_GENERATOR,
-  name: "MooneyMaker",
-  url: "https://mooneymaker.co", // Reemplaza con tu URL de producción
-  ogImage: "https://mooneymaker.co/frontend/CSOFTV7/img/logo%20mooney.png", // URL del logo
-  favicon: "https://mooneymaker.co/frontend/CSOFTV7/img/logo%20mooney.png", // URL del logo para favicon
+  name: "Ganamos.io",
+  url: "https://ganamos.io/home", // URL de producción
+  ogImage: "https://ganamos.io/icons/safari-pinned-tab.svg",
+  favicon: "https://ganamos.io/favicon.ico",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.title || "MooneyMaker",
+    default: siteConfig.title || "Ganamos",
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
 
-  // Favicons y icons
+  // Favicons y icons (usando los públicos de Ganamos.io)
   icons: {
-    icon: siteConfig.favicon,
-    shortcut: siteConfig.favicon,
-    apple: siteConfig.favicon,
+    icon: [
+      { url: "https://ganamos.io/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "https://ganamos.io/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "https://ganamos.io/icons/favicon.ico",
+    apple: [
+      { url: "https://ganamos.io/icons/apple-touch-icon-57x57.png", sizes: "57x57" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-60x60.png", sizes: "60x60" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-72x72.png", sizes: "72x72" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-76x76.png", sizes: "76x76" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-114x114.png", sizes: "114x114" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-120x120.png", sizes: "120x120" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-144x144.png", sizes: "144x144" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-152x152.png", sizes: "152x152" },
+      { url: "https://ganamos.io/icons/apple-touch-icon-180x180.png", sizes: "180x180" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "https://ganamos.io/icons/safari-pinned-tab.svg",
+        color: "#000000",
+      },
+    ],
   },
 
   // Open Graph
@@ -57,12 +75,12 @@ export const metadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        width: 1200, // Ancho deseado para la imagen de vista previa (ajusta si es necesario)
-        height: 630, // Alto deseado para la imagen de vista previa (ajusta si es necesario)
+        width: 1200,
+        height: 630,
         alt: siteConfig.name,
       },
     ],
-    locale: "es_AR", // Asumiendo español de Argentina
+    locale: "es_AR",
     type: "website",
   },
 
@@ -72,10 +90,9 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    // Puedes añadir @creator si tienes un handle de Twitter
   },
 
-  // Otros metadatos útiles
+  // Robots
   robots: {
     index: true,
     follow: true,
@@ -87,8 +104,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Alternativa al generator, si no quieres el de v0.dev
-  // generator: siteConfig.name,
 };
 
 export default function RootLayout({
@@ -97,12 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${montserrat.variable}`}
-    >
-      {" "}
-      {/* Puedes quitar className=\"dark\" si ThemeProvider lo maneja o si prefieres tema claro por defecto */}
+    <html lang="es" className={`${montserrat.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -115,7 +125,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      {/* Aplicamos la clase de Montserrat al body */}
       <body className={montserrat.className}>
         <Script
           id="fb-pixel"
@@ -180,6 +189,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-
