@@ -15,6 +15,7 @@ export default function WhatsAppRedirect() {
     }, 500)
 
     
+    
     const redirectTimer = setTimeout(() => {
       // Cambia este número por el tuyo
       const phoneNumber = process.env.NEXT_PUBLIC_API_NUMBER // Formato: código país + número sin espacios ni símbolos
